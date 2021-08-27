@@ -31,6 +31,7 @@
 
         outb(SERIAL_LINE_COMMAND_PORT(com), 0x03);
     }
+    int serial_write(char *buf, unsigned int len);
     
      void serial_configure_fifo_buffer(unsigned short com) {
 
@@ -51,7 +52,7 @@ void serial_configure_modem(unsigned short com) {
     }
     
     
-      void serial_write_byte(unsigned short port, char byteData) {
+void serial_write_byte(unsigned short port, char byteData) {
   outb(port, byteData);
 }  
  void serial_configure(unsigned short port, unsigned short baudRate) {
@@ -61,19 +62,7 @@ void serial_configure_modem(unsigned short com) {
   serial_configure_modem(port);
 }
     
-    
-    int serial_write(unsigned short com, char *buf, unsigned int len) {
-    serial_configure(com , divisor);
-  unsigned int indexToBuffer = 0;
-  while (indexToBuffer < len) {
-    if (serial_is_transmit_fifo_empty(com)) {
-      serial_write_byte(com, buf[indexToBuffer]);
-      indexToBuffer++;
-    }
-  }
-  return 0;
-}
-    
+  
     
     
     #endif
