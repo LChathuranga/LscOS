@@ -1,14 +1,25 @@
-#include "frame_buffer.h"
-#include "serial_port.h"
+#include "drivers/framebuffer.h"
+#include "drivers/serial_port.h"
+#include "segmentation/memory_segments.h"
+#include "interrupts/keyboard.h"
+#include "interrupts/interrupts.h"
+#include "user_mode/start_program.h"
+#include "paging/paging.h"
 
 
-    
-    int main(){
+/*function to intialize interrupts and segments*/
+void init(){
+	segments_install_gdt();
+	interrupts_install_idt();
+	init_paging();
 
-           char ptr2[] = "Lahiru Chathuranga";
-   
-    
+}
 
-    fb_write(ptr2, 18);
-    
-    }
+/*kernal main funcion*/
+void kmain(){
+
+	init();   //initialize interrunpts and segments
+	
+
+
+}
