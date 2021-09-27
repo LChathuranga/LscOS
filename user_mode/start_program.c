@@ -11,7 +11,7 @@ void run_custom_program(unsigned int ebx){
          
         /*the program will only be executed if the number of loaded programs equal to one*/
 	}else if(mbinfo->mods_count == 1){
-		char msg[]="successfully loaded";
+		char msg[]="module loading was successfull";
 		fb_write(msg, sizeof(msg));
 		multiboot_module_t* modules = (multiboot_module_t*) mbinfo->mods_addr;
 		unsigned int address_of_module = modules->mod_start;
